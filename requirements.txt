@@ -1,2 +1,3 @@
 pymongo
 cfscrape
+beautifulsoup4
