@@ -15,7 +15,7 @@ if __name__ == "__main__":
     site = SyriaHR(scraper, syriahr)
     # site.clear_all_docs()
     site.show_all_docs()
-    # syriahr.create_index([("body", TEXT), ("title", TEXT)], name='search_index', default_language='english')
+    syriahr.create_index([("body", TEXT), ("title", TEXT)], name='search_index', default_language='english')
     
     date = datetime.today()
     articles = site.get_article_urls_for_date(date)
