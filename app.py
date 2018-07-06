@@ -25,7 +25,7 @@ if __name__ == "__main__":
     site = SyriaHR(scraper, syriahr)
     # site.clear_all_docs()
     # site.show_all_docs()
-    print("There are {num} articles currently in the database".format(num=site.how_many_docs))
+    print("There are {num} articles currently in the database".format(num=site.how_many_docs()))
     syriahr.create_index([("body", TEXT), ("title", TEXT)], name='search_index', default_language='english')
 
     start_date = datetime(2012, 1, 1)
