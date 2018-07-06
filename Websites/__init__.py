@@ -35,10 +35,10 @@ class SyriaHR(Website):
         Website.__init__(self, "http://www.syriahr.com/en/", scraper, collection)
         self._current_page = 1
 
-    from .syriahr._get import get_article_urls_for_date
+    from .syriahr._get import get_article_urls_for_date_range
     from .syriahr._unique import check_if_unique
     # from .syriahr._parse import 
-    from ._clear_docs import clear_all_docs, show_all_docs
+    from ._clear_docs import clear_all_docs, show_all_docs, how_many_docs
 
     def archive_url_path(self):
         return ""

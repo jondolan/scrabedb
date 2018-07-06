@@ -14,3 +14,7 @@ def show_all_docs(self):
     for doc in all_docs:
         print("\t- " + doc["_id"] + ": " + doc['title'])
     print("\n")
+
+def how_many_docs(self):
+    all_docs = self._collection.find({})
+    return all_docs.count()
