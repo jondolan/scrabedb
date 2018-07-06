@@ -28,27 +28,8 @@ if __name__ == "__main__":
     print("There are {num} articles currently in the database".format(num=site.how_many_docs))
     syriahr.create_index([("body", TEXT), ("title", TEXT)], name='search_index', default_language='english')
 
-    start_date = datetime(2015, 1, 1)
+    start_date = datetime(2012, 1, 1)
     end_date = datetime.now()
-    # dates = [   #datetime(2012, 1, 1),
-    #             #datetime(2013, 1, 1),
-    #             datetime(2014, 11, 1),
-    #             datetime(2014, 11, 11)]
-                # datetime(2015, 1, 1),
-                # datetime(2015, 6, 1),
-                # datetime(2016, 1, 1),
-                # datetime(2016, 6, 1),
-                # datetime(2017, 1, 1),
-                # datetime(2017, 4, 1),
-                # datetime(2017, 8, 1),
-                # datetime(2018, 1, 1),
-                # datetime(2018, 3, 1),
-                # datetime.today()]
-    # start_date = datetime(2012, 1, 1)
-    # end_date = datetime.today()
-    # end_date = datetime(2012, 4, 1)
-    # start_date = datetime.today()
-    # end_date = datetime.today()
 
     current_date = start_date
     while current_date < end_date:
