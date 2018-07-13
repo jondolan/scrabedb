@@ -17,11 +17,9 @@ def next_month(start):
     tmp2 = tmp1 + timedelta(days=32)
     return tmp2.replace(day=1)
 
-class SyriaHRScraper(Thread):
+class SyriaHRScraper():
 
     def __init__(self, start_date, end_date):
-
-        super().__init__()
 
         self.start_date = start_date
         self.end_date = end_date
@@ -40,7 +38,7 @@ class SyriaHRScraper(Thread):
 
     
 
-    def run(self):
+    def start(self):
         current_date = self.start_date
         print("Scraper started for {start} to {end}".format(start=self.start_date, end=self.end_date))
         while current_date < self.end_date:
@@ -75,7 +73,5 @@ class SyriaHRScraper(Thread):
             current_date = next_month(current_date)
 
 
-if __name__ == "__main__":
-    print("Running test case from Jan 1, 2018 until now")
-    scrape = SyriaHRScraper(datetime(2015, 2, 1), datetime.now())
-    scrape.start()
+scrape = SyriaHRScraper(datetime(2014, 1, 1), datetime.now())
+scrape.start()
