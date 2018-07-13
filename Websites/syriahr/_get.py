@@ -1,6 +1,7 @@
 import datetime
 from bs4 import BeautifulSoup
 from Article import Article
+from sys import stdout
 
 
 def get_article_urls_for_date_range(self, start_date, end_date):
@@ -15,13 +16,14 @@ def get_article_urls_for_date_range(self, start_date, end_date):
 
     while start_date <= date_for_url <= end_date:
         url = self.build_url_for_date(date_for_url, page_index)
-        print("Scraping for posts on page {url}".format(url=url))
+        print("\t\tAt {date}: scraping for posts on page {url}".format(date=datetime.datetime.now(), url=url))
+        stdout.flush()
         page = BeautifulSoup(self._scraper.get(url).content, 'html.parser')
         posts = page.find_all("li", class_="post-item")
 
         # print(len(posts))
         if len(posts) == 0:
-            date_for_url = add_one_month(date_for_url)
+            date_for_url = next_month(date_for_url)
             page_index = 1
         else:
             for post in posts:
@@ -48,8 +50,7 @@ def get_article_urls_for_date_range(self, start_date, end_date):
     #     print(self.build_url_for_date(date, i))
 
 
-def add_one_month(dt0):
-    dt1 = dt0.replace(day=1)
-    dt2 =  dt1 + datetime.timedelta(days=32)
-    dt3 = dt2.replace(day=1)
-    return dt3
+def next_month(start):
+    tmp1 = start.replace(day=1)
+    tmp2 = tmp1 + datetime.timedelta(days=32)
+    return tmp2.replace(day=1)
