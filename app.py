@@ -47,21 +47,24 @@ if __name__ == "__main__":
 
         print("\tfinding from {start} to {end}".format(start=current_date, end=current_end_date))
 
-        articles = site.get_article_urls_for_date_range(current_date, current_end_date)
+        try:
+            articles = site.get_article_urls_for_date_range(current_date, current_end_date)
 
-        print("\ta total of {num} articles were found for range from {start_date} to {end_date}".format(
-            num=len(articles),
-            start_date=current_date,
-            end_date=current_end_date))
+            print("\ta total of {num} articles were found for range from {start_date} to {end_date}".format(
+                num=len(articles),
+                start_date=current_date,
+                end_date=current_end_date))
 
-        for article in articles:
-            if (site.check_if_unique(article) == 1):
-                print("\t\tArticle {id} is new, adding to database!".format(id=article._uid))
-                article.parse(scraper.get(article._url).content)
-                syriahr.insert_one(article.export())
-                # pprint.pprint(article.export())
-            else:
-                print("\t\tAlready indexed article {id}".format(id=article._uid))
-            stdout.flush()
-
-        current_date = next_month(current_date)
+            for article in articles:
+                if (site.check_if_unique(article) == 1):
+                    print("\t\tArticle {id} is new, adding to database!".format(id=article._uid))
+                    article.parse(scraper.get(article._url).content)
+                    syriahr.insert_one(article.export())
+                    # pprint.pprint(article.export())
+                else:
+                    print("\t\tAlready indexed article {id}".format(id=article._uid))
+                stdout.flush()
+        except:
+            print("Failed big time:", sys.exc_info()[0])
+            
+    current_date = next_month(current_date)
