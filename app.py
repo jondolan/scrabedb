@@ -18,7 +18,8 @@ def next_month(start):
     return tmp2.replace(day=1)
 
 if __name__ == "__main__":
-    start_date = datetime(2014, 1, 1)
+    # start_date = datetime(2014, 1, 1)
+    start_date = datetime.strptime(os.environ['SCRAPER_START_DATE'], "%Y-%m-%d")
     end_date = datetime.now()
 
     scraper = cfscrape.create_scraper()
