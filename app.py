@@ -68,4 +68,4 @@ if __name__ == "__main__":
         except:
             print("Failed big time:", sys.exc_info()[0])
             
-    current_date = next_month(current_date)
+        current_date = next_month(current_date)
